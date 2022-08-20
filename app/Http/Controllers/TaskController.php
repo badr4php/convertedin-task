@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\Redirect;
+use App\Events\TaskCreated;
 
 class TaskController extends Controller
 {
@@ -37,7 +38,8 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        Task::create($request->input());
+        $task = Task::create($request->input());
+        TaskCreated::dispatch($task);
         return Redirect::route('tasks.list');
     }
 }

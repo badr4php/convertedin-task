@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\StatisticController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +20,5 @@ Route::controller(TaskController::class)->group(function () {
     Route::get('/task', 'create')->name('task.create');
     Route::post('/task', 'store')->name('task.store');
 });
+
+Route::get('/statistics', [StatisticController::class, 'index'])->name('statistic.list');
