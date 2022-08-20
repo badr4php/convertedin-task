@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -24,4 +25,9 @@ class User extends Authenticatable
         'name',
         'role',
     ];
+
+    public function search($role, Request $request){
+       return  $this->where('role', $role)->where('name', 'LIKE', '%'.$request->input('term', '').'%')
+       ->limit(10)->get(['id', 'name as text']);
+    }
 }
