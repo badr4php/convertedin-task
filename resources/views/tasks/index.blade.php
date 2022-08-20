@@ -9,7 +9,15 @@
   <div class="container mt-4">
   <div class="card">
     <div class="card-header text-center font-weight-bold">
+    <div class="row align-items-start">
+    <div class="col">
       Tasks
+    </div>
+    <div class="col">
+    <a href="{{route('task.create')}}" class="link-primary"> Create Task</a>
+     
+    </div>
+  </div>
     </div>
     <div class="card-body">
     <table class="table table-striped">
