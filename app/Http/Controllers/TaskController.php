@@ -15,7 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        dd('ggg');
+        $tasks = Task::with(['user:id,name', 'admin:id,name'])->paginate(10);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     /**

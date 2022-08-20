@@ -20,4 +20,20 @@ class Task extends Model
         'assigned_to_id',
         'assigned_by_id',
     ];
+
+    /**
+     * Get the admin of this task.
+     */
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'assigned_by_id');
+    }
+
+    /**
+     * Get the user of this task.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'assigned_to_id');
+    }
 }
